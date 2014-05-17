@@ -36,7 +36,7 @@ namespace lafe.ShutdownService.Monitoring
         public void StartMonitoring()
         {
             Logger.Trace(LogNumbers.StartingMonitor, "Starting Network Monitor");
-            Timer.StartTimer(true);
+            Timer.StartTimer(false);
         }
 
         public void StopMonitoring()
