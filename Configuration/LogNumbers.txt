@@ -1,0 +1,14 @@
+﻿3000
+LoadingConfig
+SearchingConfigurationFile
+FoundConfiguration
+ConfigurationNotFoundAtLocation
+LoadingConfigException
+UsingConfigurationFile
+CreatingXmlReader
+CreatingSerializer
+CanDeserialize
+CannotDeserialize
+DeserializingFile
+GeneratingPath
+ConfigurationLoaded
