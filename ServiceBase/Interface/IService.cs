@@ -3,6 +3,7 @@
     public interface IService
     {
         void OnContinue();
+
         void OnPause();
 
         void OnStart(string[] args);

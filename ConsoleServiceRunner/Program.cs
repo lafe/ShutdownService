@@ -10,6 +10,9 @@ namespace lafe.ShutdownService.ConsoleServiceRunner
         {
             var service = new Service();
             service.OnStart(args);
+
+            Console.WriteLine("Program is running. Press any key to exit.\n");
+            Console.ReadKey();
         }
     }
 }

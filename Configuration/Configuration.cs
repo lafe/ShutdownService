@@ -75,12 +75,9 @@ namespace lafe.ShutdownService.Configuration {
     public enum RangeType {
         
         /// <remarks/>
-        Dns,
-        
-        /// <remarks/>
         Ip,
         
         /// <remarks/>
-        Netbios,
+        Dns,
     }
 }

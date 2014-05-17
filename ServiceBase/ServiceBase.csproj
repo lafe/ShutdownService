@@ -46,11 +46,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\Class1.cs" />
+    <Compile Include="Interface\IService.cs" />
+    <Compile Include="Interface\IServiceTimerFactory.cs" />
+    <Compile Include="Interface\IServiceTimer.cs" />
+    <Compile Include="LogNumbers.cs">
+      <DependentUpon>LogNumbers.txt</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceTimerFactory.cs" />
+    <Compile Include="ServiceTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Logging\Logging.csproj">
+      <Project>{B0A0B6CB-699A-4621-B2AD-BEDAEE7C36A6}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LogNumbers.txt">
+      <Generator>T4Toolbox.TemplatedFileGenerator</Generator>
+      <LastGenOutput>LogNumbers.cs</LastGenOutput>
+      <CustomToolNamespace>lafe.ServiceBase</CustomToolNamespace>
+      <Template>..\Templates\LogNumbers.tt</Template>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

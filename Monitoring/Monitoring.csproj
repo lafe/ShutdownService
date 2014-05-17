@@ -45,12 +45,51 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NetworkMonitor.cs" />
+    <Compile Include="Interface\IDnsResolver.cs" />
+    <Compile Include="Interface\INetworkMonitor.cs" />
+    <Compile Include="Interface\IOnlineCheck.cs" />
+    <Compile Include="Interface\IOnlineCheckFactory.cs" />
+    <Compile Include="LogNumbers.cs">
+      <DependentUpon>LogNumbers.txt</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="Monitor.cs" />
+    <Compile Include="NetworkMonitoring\NetworkMonitor.cs" />
+    <Compile Include="NetworkMonitoring\NetworkPing.cs" />
+    <Compile Include="NetworkMonitoring\NetworkPingFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resolver\DnsResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{E1334138-C4D3-4CB0-BD21-4CD23FA5B2D6}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging\Logging.csproj">
+      <Project>{B0A0B6CB-699A-4621-B2AD-BEDAEE7C36A6}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ServiceBase\ServiceBase.csproj">
+      <Project>{1204106B-6A35-418F-A4D4-386AC68DED2D}</Project>
+      <Name>ServiceBase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LogNumbers.txt">
+      <Generator>T4Toolbox.TemplatedFileGenerator</Generator>
+      <LastGenOutput>LogNumbers.cs</LastGenOutput>
+      <CustomToolNamespace>lafe.ShutdownService.Monitoring</CustomToolNamespace>
+      <Template>..\Templates\LogNumbers.tt</Template>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
