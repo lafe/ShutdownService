@@ -3,7 +3,48 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitoring", "Monitoring\Monitoring.csproj", "{886DC81E-2AC1-4621-A3E4-C824E9538CFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceLibrary", "ServiceLibrary\ServiceLibrary.csproj", "{620E3CAB-C994-4A8B-BC06-8ED2961F1BEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logging", "Logging\Logging.csproj", "{B0A0B6CB-699A-4621-B2AD-BEDAEE7C36A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleServiceRunner", "ConsoleServiceRunner\ConsoleServiceRunner.csproj", "{7DFCFDD1-3FEF-411B-B734-9B88F29CEABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceBase", "ServiceBase\ServiceBase.csproj", "{1204106B-6A35-418F-A4D4-386AC68DED2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{5379EBF3-65B7-40F2-8D1F-A2AD0CB58076}"
+	ProjectSection(SolutionItems) = preProject
+		Templates\LogNumbers.tt = Templates\LogNumbers.tt
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{886DC81E-2AC1-4621-A3E4-C824E9538CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{886DC81E-2AC1-4621-A3E4-C824E9538CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{886DC81E-2AC1-4621-A3E4-C824E9538CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{886DC81E-2AC1-4621-A3E4-C824E9538CFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{620E3CAB-C994-4A8B-BC06-8ED2961F1BEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{620E3CAB-C994-4A8B-BC06-8ED2961F1BEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{620E3CAB-C994-4A8B-BC06-8ED2961F1BEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{620E3CAB-C994-4A8B-BC06-8ED2961F1BEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A0B6CB-699A-4621-B2AD-BEDAEE7C36A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A0B6CB-699A-4621-B2AD-BEDAEE7C36A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A0B6CB-699A-4621-B2AD-BEDAEE7C36A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A0B6CB-699A-4621-B2AD-BEDAEE7C36A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DFCFDD1-3FEF-411B-B734-9B88F29CEABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DFCFDD1-3FEF-411B-B734-9B88F29CEABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DFCFDD1-3FEF-411B-B734-9B88F29CEABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DFCFDD1-3FEF-411B-B734-9B88F29CEABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1204106B-6A35-418F-A4D4-386AC68DED2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1204106B-6A35-418F-A4D4-386AC68DED2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1204106B-6A35-418F-A4D4-386AC68DED2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1204106B-6A35-418F-A4D4-386AC68DED2D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
