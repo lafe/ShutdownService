@@ -2,46 +2,26 @@
 using System.Linq;
 using System.Threading.Tasks;
 using lafe.Logging.Interface;
-using lafe.ServiceBase.Interface;
 using lafe.ShutdownService.Monitoring.Interface;
 
 namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
 {
-    public class NetworkMonitor : INetworkMonitor
+    public class NetworkMonitor : IMonitor
     {
         public ILog Logger { get; set; }
         public IOnlineCheckFactory OnlineCheckFactory { get; set; }
         public Configuration.Configuration Configuration { get; set; }
-        public IServiceTimerFactory ServiceTimerFactory { get; set; }
 
-        protected IServiceTimer Timer { get; set; }
-
-        public NetworkMonitor(Configuration.Configuration configuration, ILog logger, IOnlineCheckFactory onlineCheckFactory, IServiceTimerFactory serviceTimerFactory)
+        public NetworkMonitor(Configuration.Configuration configuration, ILog logger, IOnlineCheckFactory onlineCheckFactory)
         {
             Logger = logger;
             OnlineCheckFactory = onlineCheckFactory;
             Configuration = configuration;
-            ServiceTimerFactory = serviceTimerFactory;
-
-            var period = new TimeSpan(0, 0, 1); //TODO Config
-            //var period = new TimeSpan(0, 15, 0); //TODO Config
-            Timer = ServiceTimerFactory.CreateTimer(period, true, DoMonitoring);
         }
 
+        public string Name { get { return "Network Monitor"; } }
 
-        public void StartMonitoring()
-        {
-            Logger.Trace(LogNumbers.StartingMonitor, "Starting Network Monitor");
-            Timer.StartTimer(true);
-        }
-
-        public void StopMonitoring()
-        {
-            Logger.Trace(LogNumbers.StoppingMonitor, "Starting Network Monitor");
-            Timer.StopTimer();
-        }
-
-        private void DoMonitoring(object state)
+        public bool CanShutdown()
         {
             try
             {
@@ -51,9 +31,9 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
                 if (onlineCheckerCreatorTasks.Count == 0)
                 {
                     Logger.Warn(LogNumbers.NoCheckInstancesFound, "No monitored ranges found. Skipping check.");
-                    return;
+                    return false;
                 }
-                
+
                 var results = new System.Collections.Concurrent.ConcurrentBag<Tuple<string, bool>>();
                 Parallel.ForEach(onlineCheckerCreatorTasks, onlineCheck =>
                 {
@@ -61,7 +41,7 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
                     {
                         var isOnline = onlineCheck.IsOnline();
                         results.Add(new Tuple<string, bool>(onlineCheck.Address, isOnline));
-                        
+
                     }
                     catch (Exception ex)
                     {
@@ -75,7 +55,7 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
                     //Sometimes zero results are reported...
 
                     Logger.Warn(LogNumbers.ResultEmpty, "No results have been retrieved from the computers. Assuming that at least one computer is online and aborting check.");
-                    return;
+                    return false;
                 }
 
                 var anyComputerOnline = results.Any(item => item.Item2);
@@ -85,16 +65,17 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
                     var stillOnline = string.Join(", ", results.Where(item => item.Item2).Select(item => item.Item1));
 
                     Logger.Info(LogNumbers.ComputerStillOnline, string.Format("Cannot shut down. The following addresses are online: {0}", stillOnline));
-                    return;
+                    return false;
                 }
 
-                Logger.Info(LogNumbers.NoComputerOnline, "All computers are offline or cannot be reached in the specified timeout. Initating shut down.");
+                Logger.Info(LogNumbers.NoComputerOnline, "All computers are offline or cannot be reached in the specified timeout. Go ahead from Network monitor!");
 
-                //TODO
+                return true;
             }
             catch (Exception ex)
             {
                 Logger.Error(LogNumbers.MonitoringException, ex, string.Format("While performing the network monitoring activities, an error occured: {0}", ex));
+                return false;
             }
         }
     }

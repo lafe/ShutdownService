@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{886DC81E-2AC1-4621-A3E4-C824E9538CFB}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{49135919-03BF-471E-91C4-5BF2A2870BBA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>lafe.ShutdownService.Monitoring</RootNamespace>
-    <AssemblyName>Monitoring</AssemblyName>
+    <RootNamespace>ShutdownService</RootNamespace>
+    <AssemblyName>ShutdownService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -29,75 +31,59 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IAction.cs" />
-    <Compile Include="Interface\IDnsResolver.cs" />
-    <Compile Include="Interface\IMonitorFactory.cs" />
-    <Compile Include="Interface\IMonitoringTimer.cs" />
-    <Compile Include="Interface\IMonitor.cs" />
-    <Compile Include="Interface\INetworkMonitorFactory.cs" />
-    <Compile Include="Interface\IOnlineCheck.cs" />
-    <Compile Include="Interface\IOnlineCheckFactory.cs" />
-    <Compile Include="LogNumbers.cs">
-      <DependentUpon>LogNumbers.txt</DependentUpon>
-      <AutoGen>True</AutoGen>
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MonitorFactory.cs" />
-    <Compile Include="MonitoringTimer.cs" />
-    <Compile Include="NetworkMonitoring\NetworkMonitor.cs" />
-    <Compile Include="NetworkMonitoring\NetworkMonitorFactory.cs" />
-    <Compile Include="NetworkMonitoring\NetworkPing.cs" />
-    <Compile Include="NetworkMonitoring\NetworkPingFactory.cs" />
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShutdownService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ShutdownService.Designer.cs">
+      <DependentUpon>ShutdownService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resolver\DnsResolver.cs" />
-    <Compile Include="ShutdownAction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="key.snk" />
-    <None Include="packages.config" />
+    <None Include="App.config" />
+    <Content Include="NLog.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Configuration\Configuration.csproj">
-      <Project>{E1334138-C4D3-4CB0-BD21-4CD23FA5B2D6}</Project>
-      <Name>Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Logging\Logging.csproj">
-      <Project>{B0A0B6CB-699A-4621-B2AD-BEDAEE7C36A6}</Project>
-      <Name>Logging</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShutdownService.resx">
+      <DependentUpon>ShutdownService.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ServiceBase\ServiceBase.csproj">
       <Project>{1204106B-6A35-418F-A4D4-386AC68DED2D}</Project>
       <Name>ServiceBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceLibrary\ServiceLibrary.csproj">
+      <Project>{620E3CAB-C994-4A8B-BC06-8ED2961F1BEB}</Project>
+      <Name>ServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="LogNumbers.txt">
-      <Generator>T4Toolbox.TemplatedFileGenerator</Generator>
-      <LastGenOutput>LogNumbers.cs</LastGenOutput>
-      <CustomToolNamespace>lafe.ShutdownService.Monitoring</CustomToolNamespace>
-      <Template>..\Templates\LogNumbers.tt</Template>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

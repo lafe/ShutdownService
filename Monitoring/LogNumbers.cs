@@ -30,6 +30,19 @@ namespace lafe.ShutdownService.Monitoring
 							public const int ResultEmpty = 4024;
 							public const int PingResultNull = 4025;
 							public const int NoCheckInstancesFound = 4026;
+							public const int RunningMonitor = 4027;
+							public const int MonitorResult = 4028;
+							public const int SkippingMonitors = 4029;
+							public const int SystemShuttingDown = 4030;
+							public const int RetrievedWin32Object = 4031;
+							public const int SecurityPrivilegesEnabled = 4032;
+							public const int SetFlagsToShutdown = 4033;
+							public const int SendingWin32ShutdownCommand = 4034;
+							public const int Bye = 4035;
+							public const int ErrorWhilePerformingShutdown = 4036;
+							public const int InDebugMode = 4037;
+							public const int TryingAlternativeShutdown = 4038;
+							public const int ErrorWhilePerformingAlternativeShutdown = 4039;
 						
 	}
 }
