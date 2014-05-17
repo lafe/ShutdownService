@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Class can be generated with xsd Configuration.xsd /c /n:"lafe.ShutdownService.Configuration"
+-->
+
+<xs:schema 
+  attributeFormDefault="unqualified" 
+  elementFormDefault="qualified" 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="RangeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Ip" />
+      <xs:enumeration value="Dns" />
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:complexType name="MonitoredRange">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Type" type="RangeType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Address" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="MonitoredRanges">
+    <xs:sequence>
+      <xs:element name="MonitoredRange" type="MonitoredRange" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Configuration">
+    <xs:sequence>
+      <xs:element name="MonitoredRanges" type="MonitoredRanges" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="Configuration" type="Configuration"/>
+</xs:schema>

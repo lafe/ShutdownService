@@ -1,0 +1,15 @@
+﻿5000
+CreatingTimer
+StartedTimer
+CannotChangeTimerNull
+ChangingTimer
+ChangedTimer
+StoppingTimer
+TimerStopped
+TimerFired
+TimerCallbackComplete
+ConsturctorWithPeriod
+StartingTimer
+PausedTimer
+ResumedTimer
+TimerCallbackException
