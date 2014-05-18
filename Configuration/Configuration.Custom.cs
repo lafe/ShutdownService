@@ -7,6 +7,22 @@ using System.Xml;
 
 namespace lafe.ShutdownService.Configuration
 {
+    public partial class TimerConfiguration
+    {
+        /// <summary>
+        /// Refresh interval of the timer
+        /// </summary>
+        public TimeSpan Interval
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(CheckInterval) ?
+                        new TimeSpan(0, 15, 0) :
+                        XmlConvert.ToTimeSpan(CheckInterval);
+            }
+        }
+    }
+
     public partial class MonitoredRange
     {
         /// <summary>

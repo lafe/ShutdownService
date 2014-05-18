@@ -30,7 +30,7 @@ namespace lafe.ShutdownService.Monitoring
 #if DEBUG
             var period = new TimeSpan(0, 0, 1);
 #else
-            var period = new TimeSpan(0, 15, 0); //TODO Config
+            var period = Configuration.Timer.Interval;
 #endif
             Timer = ServiceTimerFactory.CreateTimer(period, true, DoMonitoring);
         }

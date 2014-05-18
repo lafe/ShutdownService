@@ -31,7 +31,7 @@ namespace lafe.ServiceBase
         }
 
         public ServiceTimer(TimeSpan period, ILog logger, Action<object> callback)
-            : this(new TimeSpan(0, 15, 0), false, logger, callback)
+            : this(period, false, logger, callback)
         {
         }
 

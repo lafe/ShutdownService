@@ -1,24 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Configuration>
+  <Timer>
+    <CheckInterval>PT15M</CheckInterval>
+  </Timer>
   <MonitoredRanges NetworkTimeout="PT30S">
     <MonitoredRange>
       <Type>Ip</Type>
       <Address>192.168.1.15</Address>
     </MonitoredRange>
-    
+
     <MonitoredRange>
       <Type>Ip</Type>
       <Address>192.168.1.16</Address>
     </MonitoredRange>
-    
+
     <MonitoredRange>
       <Type>Dns</Type>
       <Address>Skywalker</Address>
-    </MonitoredRange>
-    
-    <MonitoredRange>
-      <Type>Dns</Type>
-      <Address>DoesNotExist</Address>
     </MonitoredRange>
   </MonitoredRanges>
 </Configuration>

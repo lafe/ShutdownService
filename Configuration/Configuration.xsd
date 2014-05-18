@@ -30,8 +30,15 @@
     <xs:attribute name="NetworkTimeout" type="xs:duration"/>
    </xs:complexType>
 
+  <xs:complexType name="TimerConfiguration">
+    <xs:sequence>
+      <xs:element name="CheckInterval" type="xs:duration" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
   <xs:complexType name="Configuration">
     <xs:sequence>
+      <xs:element name="Timer" type="TimerConfiguration" />
       <xs:element name="MonitoredRanges" type="MonitoredRanges" />
     </xs:sequence>
   </xs:complexType>

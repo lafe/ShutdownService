@@ -23,7 +23,19 @@ namespace lafe.ShutdownService.Configuration {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Configuration {
         
+        private TimerConfiguration timerField;
+        
         private MonitoredRanges monitoredRangesField;
+        
+        /// <remarks/>
+        public TimerConfiguration Timer {
+            get {
+                return this.timerField;
+            }
+            set {
+                this.timerField = value;
+            }
+        }
         
         /// <remarks/>
         public MonitoredRanges MonitoredRanges {
@@ -41,31 +53,18 @@ namespace lafe.ShutdownService.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MonitoredRanges {
+    public partial class TimerConfiguration {
         
-        private MonitoredRange[] monitoredRangeField;
-        
-        private string networkTimeoutField;
+        private string checkIntervalField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("MonitoredRange")]
-        public MonitoredRange[] MonitoredRange {
+        [System.Xml.Serialization.XmlElementAttribute(DataType="duration")]
+        public string CheckInterval {
             get {
-                return this.monitoredRangeField;
+                return this.checkIntervalField;
             }
             set {
-                this.monitoredRangeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="duration")]
-        public string NetworkTimeout {
-            get {
-                return this.networkTimeoutField;
-            }
-            set {
-                this.networkTimeoutField = value;
+                this.checkIntervalField = value;
             }
         }
     }
@@ -112,5 +111,39 @@ namespace lafe.ShutdownService.Configuration {
         
         /// <remarks/>
         Dns,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MonitoredRanges {
+        
+        private MonitoredRange[] monitoredRangeField;
+        
+        private string networkTimeoutField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("MonitoredRange")]
+        public MonitoredRange[] MonitoredRange {
+            get {
+                return this.monitoredRangeField;
+            }
+            set {
+                this.monitoredRangeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="duration")]
+        public string NetworkTimeout {
+            get {
+                return this.networkTimeoutField;
+            }
+            set {
+                this.networkTimeoutField = value;
+            }
+        }
     }
 }
