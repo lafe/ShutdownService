@@ -8,6 +8,7 @@ using lafe.ShutdownService.Monitoring;
 using lafe.ShutdownService.Monitoring.Interface;
 using lafe.ShutdownService.Monitoring.NetworkMonitoring;
 using lafe.ShutdownService.Monitoring.Resolver;
+using lafe.ShutdownService.Monitoring.TimeMonitor;
 using Ninject;
 using Ninject.Modules;
 
@@ -30,7 +31,12 @@ namespace lafe.ShutdownService.ServiceLibrary
             Bind<IOnlineCheckFactory>().To<NetworkPingFactory>();
             Bind<IMonitorFactory>().To<MonitorFactory>();
             Bind<INetworkMonitorFactory>().To<NetworkMonitorFactory>();
+
+            Bind<ITimeProvider>().To<TimeProvider>();
+            Bind<ITimeMonitorFactory>().To<TimeMonitorFactory>();
+            
             Bind<IMonitoringTimer>().To<MonitoringTimer>().InSingletonScope();
+            
             Bind<IAction>().To<ShutdownAction>();
         }
     }

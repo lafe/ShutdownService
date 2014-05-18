@@ -47,6 +47,8 @@ namespace lafe.ShutdownService.Monitoring
 							public const int IpNull = 4041;
 							public const int UsingNetworkTimeout = 4042;
 							public const int DnsResolveSocketException = 4043;
+							public const int ReturningNetworkMonitor = 4044;
+							public const int ReturningTimeMonitor = 4045;
 						
 	}
 }
