@@ -44,3 +44,9 @@ UsingNetworkTimeout
 DnsResolveSocketException
 ReturningNetworkMonitor
 ReturningTimeMonitor
+NoMonitoredTimes
+UsedTime
+WeekdayMismatch
+CheckingTimeCondition
+TimeMismatch
+TimeMatch

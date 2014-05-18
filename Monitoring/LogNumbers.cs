@@ -49,6 +49,12 @@ namespace lafe.ShutdownService.Monitoring
 							public const int DnsResolveSocketException = 4043;
 							public const int ReturningNetworkMonitor = 4044;
 							public const int ReturningTimeMonitor = 4045;
+							public const int NoMonitoredTimes = 4046;
+							public const int UsedTime = 4047;
+							public const int WeekdayMismatch = 4048;
+							public const int CheckingTimeCondition = 4049;
+							public const int TimeMismatch = 4050;
+							public const int TimeMatch = 4051;
 						
 	}
 }

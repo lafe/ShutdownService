@@ -27,11 +27,13 @@ namespace lafe.ShutdownService.ServiceLibrary
 
             Bind<IServiceTimerFactory>().To<ServiceTimerFactory>();
 
+            //Network monitor
             Bind<IDnsResolver>().To<DnsResolver>();
             Bind<IOnlineCheckFactory>().To<NetworkPingFactory>();
             Bind<IMonitorFactory>().To<MonitorFactory>();
             Bind<INetworkMonitorFactory>().To<NetworkMonitorFactory>();
 
+            //Time monitor
             Bind<ITimeProvider>().To<TimeProvider>();
             Bind<ITimeMonitorFactory>().To<TimeMonitorFactory>();
             

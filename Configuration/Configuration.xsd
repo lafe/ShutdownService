@@ -3,18 +3,19 @@
   Class can be generated with xsd Configuration.xsd /c /n:"lafe.ShutdownService.Configuration"
 -->
 
-<xs:schema 
-  attributeFormDefault="unqualified" 
-  elementFormDefault="qualified" 
+<xs:schema
+  attributeFormDefault="unqualified"
+  elementFormDefault="qualified"
   xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+  <!-- Network monitoring -->
   <xs:simpleType name="RangeType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="Ip" />
       <xs:enumeration value="Dns" />
     </xs:restriction>
   </xs:simpleType>
-  
+
   <xs:complexType name="MonitoredRange">
     <xs:sequence>
       <xs:element minOccurs="1" maxOccurs="1" name="Type" type="RangeType" />
@@ -22,24 +23,55 @@
     </xs:sequence>
   </xs:complexType>
 
-
   <xs:complexType name="MonitoredRanges">
     <xs:sequence>
       <xs:element name="MonitoredRange" type="MonitoredRange" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute name="NetworkTimeout" type="xs:duration"/>
-   </xs:complexType>
+  </xs:complexType>
 
+
+  <!-- Time Monitoring -->
+  <xs:complexType name="Weekdays">
+    <xs:all>
+      <xs:element minOccurs="0" name="All" />
+      <xs:element minOccurs="0" name="Monday" />
+      <xs:element minOccurs="0" name="Tuesday" />
+      <xs:element minOccurs="0" name="Wednesday" />
+      <xs:element minOccurs="0" name="Thursday" />
+      <xs:element minOccurs="0" name="Friday" />
+      <xs:element minOccurs="0" name="Saturday" />
+      <xs:element minOccurs="0" name="Sunday" />
+    </xs:all>
+  </xs:complexType>
+  
+  <xs:complexType name="MonitoredTime">
+    <xs:sequence>
+      <xs:element name="Weekdays" type="Weekdays"/>
+      <xs:element name="StartTime" type="xs:time" />
+      <xs:element name="EndTime" type="xs:time" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MonitoredTimes">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="MonitoredTime" type="MonitoredTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Timer configuration-->
   <xs:complexType name="TimerConfiguration">
     <xs:sequence>
       <xs:element name="CheckInterval" type="xs:duration" minOccurs="1" maxOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
-  
+
+  <!-- Main configuration -->
   <xs:complexType name="Configuration">
     <xs:sequence>
       <xs:element name="Timer" type="TimerConfiguration" />
       <xs:element name="MonitoredRanges" type="MonitoredRanges" />
+      <xs:element name="MonitoredTimes" type="MonitoredTimes"/>
     </xs:sequence>
   </xs:complexType>
 

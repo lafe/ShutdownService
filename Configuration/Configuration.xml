@@ -19,4 +19,39 @@
       <Address>Skywalker</Address>
     </MonitoredRange>
   </MonitoredRanges>
+  <MonitoredTimes>
+    <MonitoredTime>
+      <Weekdays>
+        <Monday/>
+        <Tuesday/>
+        <Wednesday/>
+        <Thursday/>
+        <Sunday/>
+      </Weekdays>
+      <StartTime>18:00:00</StartTime>
+      <EndTime>22:00:00</EndTime>
+    </MonitoredTime>
+    <MonitoredTime>
+      <Weekdays>
+        <Friday/>
+        <Saturday/>
+      </Weekdays>
+      <StartTime>18:00:00</StartTime>
+      <EndTime>01:00:00</EndTime>
+    </MonitoredTime>
+    <MonitoredTime>
+      <Weekdays>
+        <All/>
+      </Weekdays>
+      <StartTime>16:00:00</StartTime>
+      <EndTime>18:00:00</EndTime>
+    </MonitoredTime>
+    <MonitoredTime>
+      <Weekdays>
+        <All/>
+      </Weekdays>
+      <StartTime>10:00:00</StartTime>
+      <EndTime>09:00:00</EndTime>
+    </MonitoredTime>
+  </MonitoredTimes>
 </Configuration>
