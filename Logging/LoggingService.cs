@@ -5,6 +5,12 @@ using NLog.Config;
 
 namespace lafe.Logging
 {
+    /// <summary>
+    /// Ninject compatible Logging
+    /// </summary>
+    /// <remarks>
+    /// Based on a blog post by Tony Sneed: http://blog.tonysneed.com/2011/10/09/using-nlog-with-dependency-injection/
+    /// </remarks>
     public class LoggingService : Logger, ILog
     {
         private const string LoggerName = "NLogLogger";
