@@ -25,8 +25,8 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
         {
             try
             {
-                var defaultTimeOut = new TimeSpan(0, 0, 30); //TODO Config!
-                var onlineCheckerCreatorTasks = Configuration.MonitoredRanges.Select(range => OnlineCheckFactory.CreateCheck(range.Type, range.Address, defaultTimeOut)).ToList();
+                var defaultTimeOut = Configuration.MonitoredRanges.Timeout;
+                var onlineCheckerCreatorTasks = Configuration.MonitoredRanges.MonitoredRange.Select(range => OnlineCheckFactory.CreateCheck(range.Type, range.Address, defaultTimeOut)).ToList();
 
                 if (onlineCheckerCreatorTasks.Count == 0)
                 {
@@ -39,9 +39,13 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
                 {
                     try
                     {
+                        if (onlineCheck == null)
+                        {
+                            return;
+                        }
+
                         var isOnline = onlineCheck.IsOnline();
                         results.Add(new Tuple<string, bool>(onlineCheck.Address, isOnline));
-
                     }
                     catch (Exception ex)
                     {

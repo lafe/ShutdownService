@@ -27,7 +27,8 @@
     <xs:sequence>
       <xs:element name="MonitoredRange" type="MonitoredRange" maxOccurs="unbounded" />
     </xs:sequence>
-  </xs:complexType>
+    <xs:attribute name="NetworkTimeout" type="xs:duration"/>
+   </xs:complexType>
 
   <xs:complexType name="Configuration">
     <xs:sequence>

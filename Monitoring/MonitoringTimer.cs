@@ -27,8 +27,11 @@ namespace lafe.ShutdownService.Monitoring
             MonitorFactory = monitorFactory;
             Action = action;
 
-            //var period = new TimeSpan(0, 0, 1); //TODO Config
+#if DEBUG
+            var period = new TimeSpan(0, 0, 1);
+#else
             var period = new TimeSpan(0, 15, 0); //TODO Config
+#endif
             Timer = ServiceTimerFactory.CreateTimer(period, true, DoMonitoring);
         }
 

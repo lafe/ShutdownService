@@ -22,6 +22,8 @@ namespace lafe.ShutdownService.Monitoring.Resolver
         public string Resolve(string dnsName)
         {
             Logger.Trace(LogNumbers.ResolvingDnsName, string.Format("Resolving DNS name \"{0}\"", dnsName));
+            try
+            {
 
             var hostAddress = Dns.GetHostAddresses(dnsName);
             if (hostAddress == null || hostAddress.Length == 0)
@@ -35,6 +37,12 @@ namespace lafe.ShutdownService.Monitoring.Resolver
                             : hostAddress[0].ToString();
             Logger.Trace(LogNumbers.DnsNameResolved, string.Format("DNS name {0} has been resolved to IP {1}", dnsName, result));
             return result;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(LogNumbers.DnsResolveException, ex, string.Format("While trying to resolve the DNS name \"{0}\", an error occured: {1}", dnsName, ex));
+                return string.Empty;
+            }
         }
     }
 }

@@ -26,6 +26,11 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
         {
             Logger.Trace(LogNumbers.CreateDnsCheck, string.Format("Creating DNS Check for name \"{0}\"", dnsName));
             var ip = DnsResolver.Resolve(dnsName);
+            if (string.IsNullOrWhiteSpace(ip))
+            {
+                Logger.Warn(LogNumbers.IpNull, string.Format("The resolved IP for the DNS name \"{0}\" was empty. Skipping creation of network monitor.", dnsName));
+                return null;
+            }
             return new NetworkPing(ip, timeout, Logger);
         }
         

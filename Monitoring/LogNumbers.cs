@@ -43,6 +43,8 @@ namespace lafe.ShutdownService.Monitoring
 							public const int InDebugMode = 4037;
 							public const int TryingAlternativeShutdown = 4038;
 							public const int ErrorWhilePerformingAlternativeShutdown = 4039;
+							public const int DnsResolveException = 4040;
+							public const int IpNull = 4041;
 						
 	}
 }

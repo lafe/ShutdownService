@@ -38,3 +38,5 @@ ErrorWhilePerformingShutdown
 InDebugMode
 TryingAlternativeShutdown
 ErrorWhilePerformingAlternativeShutdown
+DnsResolveException
+IpNull

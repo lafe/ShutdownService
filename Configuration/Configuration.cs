@@ -23,16 +23,49 @@ namespace lafe.ShutdownService.Configuration {
     [System.Xml.Serialization.XmlRootAttribute(Namespace="", IsNullable=false)]
     public partial class Configuration {
         
-        private MonitoredRange[] monitoredRangesField;
+        private MonitoredRanges monitoredRangesField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute(IsNullable=false)]
-        public MonitoredRange[] MonitoredRanges {
+        public MonitoredRanges MonitoredRanges {
             get {
                 return this.monitoredRangesField;
             }
             set {
                 this.monitoredRangesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MonitoredRanges {
+        
+        private MonitoredRange[] monitoredRangeField;
+        
+        private string networkTimeoutField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("MonitoredRange")]
+        public MonitoredRange[] MonitoredRange {
+            get {
+                return this.monitoredRangeField;
+            }
+            set {
+                this.monitoredRangeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="duration")]
+        public string NetworkTimeout {
+            get {
+                return this.networkTimeoutField;
+            }
+            set {
+                this.networkTimeoutField = value;
             }
         }
     }
