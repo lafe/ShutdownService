@@ -31,6 +31,10 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
                 Logger.Warn(LogNumbers.IpNull, string.Format("The resolved IP for the DNS name \"{0}\" was empty. Skipping creation of network monitor.", dnsName));
                 return null;
             }
+            if (string.Equals(ip, ConstValues.NotResolvable))
+            {
+                return null;
+            }
             return new NetworkPing(ip, timeout, Logger);
         }
         

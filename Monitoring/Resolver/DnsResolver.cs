@@ -25,18 +25,23 @@ namespace lafe.ShutdownService.Monitoring.Resolver
             try
             {
 
-            var hostAddress = Dns.GetHostAddresses(dnsName);
-            if (hostAddress == null || hostAddress.Length == 0)
-            {
-                return string.Empty;
-            }
+                var hostAddress = Dns.GetHostAddresses(dnsName);
+                if (hostAddress == null || hostAddress.Length == 0)
+                {
+                    return string.Empty;
+                }
 
-            var ip4Address = hostAddress.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
-            var result = ip4Address != null 
-                            ? ip4Address.ToString() 
-                            : hostAddress[0].ToString();
-            Logger.Trace(LogNumbers.DnsNameResolved, string.Format("DNS name {0} has been resolved to IP {1}", dnsName, result));
-            return result;
+                var ip4Address = hostAddress.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
+                var result = ip4Address != null
+                    ? ip4Address.ToString()
+                    : hostAddress[0].ToString();
+                Logger.Trace(LogNumbers.DnsNameResolved, string.Format("DNS name {0} has been resolved to IP {1}", dnsName, result));
+                return result;
+            }
+            catch (SocketException ex)
+            {
+                Logger.Trace(LogNumbers.DnsResolveSocketException, ex, string.Format("Socket Exception while trying to resolve the DNS name \"{0}\": {1}", dnsName, ex));
+                return ConstValues.NotResolvable;
             }
             catch (Exception ex)
             {

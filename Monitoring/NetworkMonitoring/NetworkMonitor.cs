@@ -38,20 +38,22 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
                 var results = new System.Collections.Concurrent.ConcurrentBag<Tuple<string, bool>>();
                 Parallel.ForEach(onlineCheckerCreatorTasks, onlineCheck =>
                 {
+                    var address = string.Empty;
                     try
                     {
                         if (onlineCheck == null)
                         {
                             return;
                         }
-
+                        
+                        address = onlineCheck.Address;
                         var isOnline = onlineCheck.IsOnline();
-                        results.Add(new Tuple<string, bool>(onlineCheck.Address, isOnline));
+                        results.Add(new Tuple<string, bool>(address, isOnline));
                     }
                     catch (Exception ex)
                     {
-                        Logger.Error(LogNumbers.ErrorInOnlineCheck, ex, string.Format("An error occured while trying to determine the online status of the computer with address \"{0}\": {1}", onlineCheck.Address, ex));
-                        results.Add(new Tuple<string, bool>(onlineCheck.Address, true));
+                        Logger.Error(LogNumbers.ErrorInOnlineCheck, ex, string.Format("An error occured while trying to determine the online status of the computer with address \"{0}\": {1}", address, ex));
+                        results.Add(new Tuple<string, bool>(address, true));
                     }
                 });
 

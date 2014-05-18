@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConstValues.cs" />
     <Compile Include="Interface\IAction.cs" />
     <Compile Include="Interface\IDnsResolver.cs" />
     <Compile Include="Interface\IMonitorFactory.cs" />
