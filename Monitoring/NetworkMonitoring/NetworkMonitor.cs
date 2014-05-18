@@ -25,8 +25,9 @@ namespace lafe.ShutdownService.Monitoring.NetworkMonitoring
         {
             try
             {
-                var defaultTimeOut = Configuration.MonitoredRanges.Timeout;
-                var onlineCheckerCreatorTasks = Configuration.MonitoredRanges.MonitoredRange.Select(range => OnlineCheckFactory.CreateCheck(range.Type, range.Address, defaultTimeOut)).ToList();
+                var networkTimeout = Configuration.MonitoredRanges.Timeout;
+                Logger.Trace(LogNumbers.UsingNetworkTimeout, string.Format("Using network timeout of {0}", networkTimeout));
+                var onlineCheckerCreatorTasks = Configuration.MonitoredRanges.MonitoredRange.Select(range => OnlineCheckFactory.CreateCheck(range.Type, range.Address, networkTimeout)).ToList();
 
                 if (onlineCheckerCreatorTasks.Count == 0)
                 {

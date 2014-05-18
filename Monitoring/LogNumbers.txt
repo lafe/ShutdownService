@@ -40,3 +40,4 @@ TryingAlternativeShutdown
 ErrorWhilePerformingAlternativeShutdown
 DnsResolveException
 IpNull
+UsingNetworkTimeout
