@@ -34,6 +34,10 @@ namespace lafe.ShutdownService.ServiceLibrary
 
             Log = Kernel.Get<ILog>();
             MonitoringTimer = Kernel.Get<IMonitoringTimer>();
+
+#if DEBUG
+            Log.Warn(LogNumbers.RunningInDebugMode, "The service has been built in DEBUG mode. No shutdown possible.");
+#endif
         }
 
         public void OnContinue()

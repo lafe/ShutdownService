@@ -10,6 +10,7 @@ namespace lafe.ShutdownService.ServiceLibrary
 							public const int OnStop = 2004;
 							public const int StartingMonitor = 2005;
 							public const int StoppingMonitor = 2006;
+							public const int RunningInDebugMode = 2007;
 						
 	}
 }

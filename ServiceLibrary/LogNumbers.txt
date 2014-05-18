@@ -5,3 +5,4 @@ OnStart
 OnStop
 StartingMonitor
 StoppingMonitor
+RunningInDebugMode
