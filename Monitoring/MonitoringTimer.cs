@@ -14,9 +14,7 @@ namespace lafe.ShutdownService.Monitoring
         public IServiceTimerFactory ServiceTimerFactory { get; set; }
         public IMonitorFactory MonitorFactory { get; set; }
         public IAction Action { get; set; }
-
-
-
+        
         protected IServiceTimer Timer { get; set; }
 
         public MonitoringTimer(Configuration.Configuration configuration, ILog logger, IServiceTimerFactory serviceTimerFactory, IMonitorFactory monitorFactory, IAction action)
@@ -34,8 +32,7 @@ namespace lafe.ShutdownService.Monitoring
 #endif
             Timer = ServiceTimerFactory.CreateTimer(period, true, DoMonitoring);
         }
-
-
+        
         public void StartMonitoring()
         {
             Logger.Trace(LogNumbers.StartingMonitor, "Starting Network Monitor");
