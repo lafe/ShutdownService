@@ -9,7 +9,7 @@ Currently the following conditions are supported:
 * Time (supports multiple time ranges and can be configured individually for each day)
 
 ##Configuration
-The configuration is performed using a XML file. An [example](Configuation/Configuration.xml) can 
+The configuration is performed using a XML file. An [example](Configuration/Configuration.xml) can 
 be found in the Configuration project. A [XML schema](Configuration/Configuration.xsd) is available
 as well.
 
