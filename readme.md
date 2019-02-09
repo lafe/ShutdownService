@@ -1,14 +1,18 @@
-#Shutdown Service
+# Shutdown Service
+
 The Shutdown Service contains a Windows Service that monitors specific settings in your environment
 and performs a shutdown of the computer if the conditions are not met. A use case for this can be a
 computer that should shutdown if no consuming devices are online.
 
-##Supported conditions
+## Supported conditions
+
 Currently the following conditions are supported:
+
 * Computers with a specific IP or DNS name is online (determined by a "ping" to that computer)
 * Time (supports multiple time ranges and can be configured individually for each day)
 
-##Configuration
+## Configuration
+
 The configuration is performed using a XML file. An [example](Configuration/Configuration.xml) can 
 be found in the Configuration project. A [XML schema](Configuration/Configuration.xsd) is available
 as well.
@@ -19,10 +23,11 @@ shutdown. If the conditions of a check are met (e.g. computer(s) is online or th
 matches one of the time constraints), the check evaluates to false. The computer is only shutdown
 if all checks pass (e.g. there is no check that objects to the shutdown).
 
-#Dependencies
+## Dependencies
 The solution uses the .NET Framework 4.5 and obviously targets Windows computers. 
 
-##Development Dependencies
+### Development Dependencies
+
 Each log message has a unique number. These numbers are generated using a 
 [T4](https://msdn.microsoft.com/en-us/library/bb126445.aspx) template that converts the content
 of a txt file to a C# class. To write the T4 template only once, the conversion is performed by
